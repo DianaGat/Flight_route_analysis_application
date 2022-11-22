@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Flight delay data analysis</title>
+	<script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-3.0.1.min.js"></script>
+    <script type="text/javascript">
+        Bokeh.set_log_level("info");
+    </script>
+</head>
+<body>
+
+  <h1>What is the desired flight?</h1>
+  <form>
+      <label for="fname">Flight Number:</label><br>
+      <input type="text" id="flightNumber" name="flightNumber"><br>
+      <label for="lname">Airport of departure (code):</label><br>
+      <input type="text" id="departureAirport" name="departureAirport"><br>
+      <label for="lname">Airport of arrival (code):</label><br>
+      <input type="text" id="arrivalAirport" name="arrivalAirport">
+  </form>
+  <br>
+  <button onclick="GetFlight(this);">Get Flight</button>
+  <p id=statusText></p>  
+  <script>
+   function UpdateResult(result){
+      if(result == "OK"){
+        window.location.href="result.html";
+      } else {
+        element = document.getElementById("statusText")
+        element.innerHTML = "FLIGHT NOT FOUND!!!"
+      }
+   }
+  
+   function GetFlight() {
+       var missingInput = [];
+       flightNumberElement = document.getElementById("flightNumber")
+       flightNumber = flightNumberElement.value.trim()
+       if(flightNumber == ""){
+           missingInput.push("Flight Number")
+           console.log("flighNumberMissing")
+       }
+       departureAirportElement = document.getElementById("departureAirport")
+       departureAirport = departureAirportElement.value.trim()
+       if(departureAirport == ""){
+           missingInput.push("Airport of Departure")
+       }
+       arrivalAirportElement = document.getElementById("arrivalAirport")
+       arrivalAirport = arrivalAirportElement.value.trim()
+       if(arrivalAirport == ""){
+           missingInput.push("Airport of Arrival")
+       }
+       statusText = document.getElementById("statusText")
+       if(missingInput.length != 0){
+       
+	       statusText.innerHTML = "<font color=\"red\">You need to fulfill the " +
+    	        missingInput.join() + " textinput</font>"	 
+           return	       
+       }
+       statusText.innerHTML = "Please wait. It can take few minutes"
+       var flightRequest = {};
+       flightRequest['flightNumber'] = flightNumber.toLowerCase()
+       flightRequest['departureAirport'] = departureAirport.toLowerCase()
+       flightRequest['arrivalAirport'] = arrivalAirport.toLowerCase()
+       postJSONFile("flightRequest.json", flightRequest, UpdateResult)     
+  }
+  
+  function postJSONFile(filename, data, callback) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", filename, false);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+              if(xhr.status === 200){
+                  callback(xhr.response);
+              }
+          }
+      };
+      xhr.send(JSON.stringify(data));
+  }
+
+  </script>
+
+</body>
+</html>
