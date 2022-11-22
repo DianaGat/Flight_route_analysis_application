@@ -19,7 +19,7 @@ The application ususe three (3) different API sources. Since this version of app
 3) API that is used to get weather for airports hourly. The application can not work without this API key. The API key is free for 30 days, website: <https://www.worldweatheronline.com/weather-api/api/local-city-town-weather-api.aspx>.  
 
 ### Pre-laoded databases: abailable routes  
-Departure_airport/Arrival_airport/Flight number  
+Departure_airport/Arrival_airport/Flight_number  
 1	 ams	man	pc7727  
 2 	jfk	del	ai102  
 3	 icn	cdg	ke901  
