@@ -12,10 +12,10 @@ The user needs to provide a desired input:
 If there are any problems finding this informations, this website can be helpful : <https://flightaware.com/live/findflight/>.  
 Once this information is given, the user can press the button “Get Flight” and wait for the processing (it may take few minutes). The user will be automatically redirected to a new page where all the plots related to the flight route are present.  
 
-## Importanat limitations  
-The application ususe three (3) different API sources. Since this version of application was for private use, the API keys are exctarcted from the initial code and a user will need have their own API keys.  
+## Limitations  
+The application uses three (3) different API sources. Since this version of application was for private use, the API keys were removed from the source code and the operator will need have their own API keys.  
 1) API that is used to get historical flights of an interested route - Aviation Edge. This application can work without this API key, working with ten (10) pre-loaded databases that are loaded in GitHub. A table of available routes can be found at the end of this page. This API does not have a free version, website: <https://aviation-edge.com/premium-api/>.  
-2) API that is used to get airport location that is later used in weather API request. The application can not work without this API key. The API key is free with monthly limiatations, website: <https://airlabs.co/#Pricing>.  
+2) API that is used to get airport location that is later used in weather API request. The application can not work without this API key. The API key is free with monthly limitations, website: <https://airlabs.co/#Pricing>.  
 3) API that is used to get weather for airports hourly. The application can not work without this API key. The API key is free for 30 days, website: <https://www.worldweatheronline.com/weather-api/api/local-city-town-weather-api.aspx>.  
 
 ### Pre-laoded databases: abailable routes  
@@ -24,7 +24,7 @@ Departure_airport/Arrival_airport/Flight_number
 2 	jfk	del	ai102  
 3	 icn	cdg	ke901  
 4	 hel	oul	ay441  
-5	 hel	rix	Bt326  
+5	 hel	rix	bt326  
 6	 rix	ber	bt211  
 7 	ber	rix	bt214  
 8	 rix	hel	bt325  
